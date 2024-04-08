@@ -13,7 +13,7 @@ function App() {
   // 7 > -400
   // 8 > -500
   // 9 > -550
-  const [marginboard, setMarginboard] = useState(-100);
+  const [marginboard, setMarginboard] = useState(250);
 
   const options = [
     { value: 3, label: '3 x 3' },
@@ -30,36 +30,36 @@ function App() {
     setSelectedOption(event.target.value);
     resetBoard();
     console.log(event.target.value);
-    if(event.target.value == 3){
+    if (event.target.value == 3) {
       setSizeboard(3);
-      setMarginboard(-100);
+      setMarginboard(250);
 
-      
-    } else if(event.target.value == 4){
+
+    } else if (event.target.value == 4) {
       setSizeboard(4);
-      setMarginboard(-150);
-    } else if(event.target.value == 5){
+      setMarginboard(350);
+    } else if (event.target.value == 5) {
       setSizeboard(5);
-      setMarginboard(-200);
+      setMarginboard(450);
       console.log('masuk 5');
-    } else if(event.target.value == 6){
+    } else if (event.target.value == 6) {
       setSizeboard(6);
-      setMarginboard(-250);
-    } else if(event.target.value == 7){
+      setMarginboard(550);
+    } else if (event.target.value == 7) {
       setSizeboard(7);
-      setMarginboard(-400);
-    } else if(event.target.value == 8){
+      setMarginboard(650);
+    } else if (event.target.value == 8) {
       setSizeboard(8);
-      setMarginboard(-500);
-    } else if(event.target.value == 9){
+      setMarginboard(730);
+    } else if (event.target.value == 9) {
       setSizeboard(9);
-      setMarginboard(-550);
-    } else if(event.target.value == 10){
+      setMarginboard(780);
+    } else if (event.target.value == 10) {
       setSizeboard(10);
-      setMarginboard(-600);
+      setMarginboard(820);
     }
 
-    
+
     // setInitboard(Array(sizeboard * sizeboard).fill(''));
 
     // const integerValue = parseInt(event.target.value);
@@ -79,7 +79,7 @@ function App() {
 
 
   // Create state for the board
-  
+
 
   useEffect(() => {
     // Create a link element
@@ -251,11 +251,16 @@ function App() {
     <div className="App">
 
       <body>
-        <div id="tic-tac-toe">
-          <div class="span3 new_span">
-            <div class="row">
+        <div id="tic-tac-toe" style={{ width: '100%' }}>
+          <div class="span3 new_span" style={{ width: '100%' }}>
+            <div class="row" style={{ display: 'flex', 'justify-content': 'center' }}>
+
               <h1 class="span3">Tic Tac Toe</h1>
-              
+              <br /><br />
+
+            </div>
+
+            <div class="row" style={{ display: 'flex', 'justify-content': 'center' }}>
               <div class="span3">
 
                 <div class="input-prepend input-append">
@@ -266,28 +271,28 @@ function App() {
                 </div>
 
               </div>
+            </div>
+            <div style={{ display: 'flex', 'justify-content': 'center' }}>
+              <ul class="row" id="game" style={{ width: marginboard + 'px' }}>
+                {boardItem()}
 
-
+              </ul>
 
             </div>
-            <ul class="row" id="game" style={{ marginLeft: marginboard + 'px' }}>
-              {boardItem()}
-
-            </ul>
             <div class="clr">&nbsp;</div>
 
-            <div class="row">
+            {/* <div style={{ display: 'flex', 'justify-content': 'center' }}> */}
+
+            <div class="row" style={{ display: 'flex', 'justify-content': 'center' }} >
               <button id="reset" onClick={resetBoard}>Reset</button>
 
-             
+
 
             </div>
+            {/* </div> */}
+            <div class="row" style={{ display: 'flex', 'justify-content': 'center' }}>
 
-            
-          </div>
-          <div>
-
-          <select value={selectedOption} onChange={handleSelectChange}>
+              <select value={selectedOption} onChange={handleSelectChange}>
                 <option value="">Select an option</option>
                 {options.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -295,6 +300,12 @@ function App() {
                   </option>
                 ))}
               </select>
+            </div>
+
+          </div>
+          <div>
+            <div class="clr">&nbsp;</div>
+
           </div>
         </div>
         <script src='https://code.jquery.com/jquery-1.7.2.min.js'></script>
