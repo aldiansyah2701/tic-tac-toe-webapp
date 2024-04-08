@@ -3,8 +3,9 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 
 function App() {
-  
+
   const [sizeboard, setSizeboard] = useState(3); // bisa diganti ganti sesuai scale
+  const [initboard, setInitboard] = useState(Array(sizeboard * sizeboard).fill(''));
   // 3 > -100
   // 4 > -150
   // 5 > -200
@@ -14,12 +15,71 @@ function App() {
   // 9 > -550
   const [marginboard, setMarginboard] = useState(-100);
 
-   // Define the size of the Tic Tac Toe board
+  const options = [
+    { value: 3, label: '3 x 3' },
+    { value: 4, label: '4 x 4' },
+    { value: 5, label: '5 x 5' },
+    { value: 6, label: '6 x 6' },
+    { value: 7, label: '7 x 7' },
+    { value: 8, label: '8 x 8' },
+    { value: 9, label: '9 x 9' },
+    { value: 10, label: '10 x 10' }
+  ];
+  const [selectedOption, setSelectedOption] = useState('');
+  const handleSelectChange = (event) => {
+    setSelectedOption(event.target.value);
+    resetBoard();
+    console.log(event.target.value);
+    if(event.target.value == 3){
+      setSizeboard(3);
+      setMarginboard(-100);
+
+      
+    } else if(event.target.value == 4){
+      setSizeboard(4);
+      setMarginboard(-150);
+    } else if(event.target.value == 5){
+      setSizeboard(5);
+      setMarginboard(-200);
+      console.log('masuk 5');
+    } else if(event.target.value == 6){
+      setSizeboard(6);
+      setMarginboard(-250);
+    } else if(event.target.value == 7){
+      setSizeboard(7);
+      setMarginboard(-400);
+    } else if(event.target.value == 8){
+      setSizeboard(8);
+      setMarginboard(-500);
+    } else if(event.target.value == 9){
+      setSizeboard(9);
+      setMarginboard(-550);
+    } else if(event.target.value == 10){
+      setSizeboard(10);
+      setMarginboard(-600);
+    }
+
+    
+    // setInitboard(Array(sizeboard * sizeboard).fill(''));
+
+    // const integerValue = parseInt(event.target.value);
+    const rowCondition = [];
+    for (let i = 0; i < event.target.value; i++) {
+      for (let j = 0; j < event.target.value; j++) {
+        rowCondition.push(`cell-${i}-${j}`);
+
+      }
+    }
+    setInitboard(rowCondition);
+  };
+
+
+  // Define the size of the Tic Tac Toe board
   //  const size = 3; // Change this value for different board sizes
 
- 
-   // Create state for the board
-   const [initboard, setInitboard] = useState(Array(sizeboard * sizeboard).fill(''));
+
+  // Create state for the board
+  
 
   useEffect(() => {
     // Create a link element
@@ -30,12 +90,12 @@ function App() {
     // Append the link element to the head of the document
     document.head.appendChild(link);
 
-    
+
     const rowCondition = [];
     for (let i = 0; i < sizeboard; i++) {
       for (let j = 0; j < sizeboard; j++) {
         rowCondition.push(`cell-${i}-${j}`);
-        
+
       }
     }
     setInitboard(rowCondition);
@@ -134,9 +194,9 @@ function App() {
     for (let i = 0; i < size; i++) {
       const rowCondition = [];
       for (let j = 0; j < size; j++) {
-        
+
         rowCondition.push(document.getElementById(`cell-${i}-${j}`));
-        console.log( "row" + `cell-${i}-${j}`);
+        console.log("row" + `cell-${i}-${j}`);
       }
       winConditions.push(rowCondition);
     }
@@ -195,6 +255,7 @@ function App() {
           <div class="span3 new_span">
             <div class="row">
               <h1 class="span3">Tic Tac Toe</h1>
+              
               <div class="span3">
 
                 <div class="input-prepend input-append">
@@ -217,7 +278,23 @@ function App() {
 
             <div class="row">
               <button id="reset" onClick={resetBoard}>Reset</button>
+
+             
+
             </div>
+
+            
+          </div>
+          <div>
+
+          <select value={selectedOption} onChange={handleSelectChange}>
+                <option value="">Select an option</option>
+                {options.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
           </div>
         </div>
         <script src='https://code.jquery.com/jquery-1.7.2.min.js'></script>
