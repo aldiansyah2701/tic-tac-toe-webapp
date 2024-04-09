@@ -141,8 +141,8 @@ function App() {
         setXWin(xWin + 1);
         resetBoard();
       } else if (count === 9) {
-        alert('It\'s a tie. It will restart.');
-        resetBoard();
+        // alert('It\'s a tie. It will restart.');
+        // resetBoard();
       }
     }
   };
